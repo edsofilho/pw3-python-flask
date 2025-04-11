@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="textoPrincipal">Bem vindo ao The Games!</h1>
+<hr />
+<a class="textoLink" href="/games">Ir página de jogos</a>
+<br /><br />
+<a class="textoLink" href="/cadgames">Cadastrar jogos</a>
+<br /><br />
+<a class="textoLink" href="/cadConsoles">Cadastrar consoles</a>
+<br>
+<!-- Importando a imagem -->
+ <img src="{{url_for('static', filename='images/main.jfif')}}" alt="">
+
+{% endblock content %}

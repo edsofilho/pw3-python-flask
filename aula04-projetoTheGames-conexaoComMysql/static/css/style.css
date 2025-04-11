@@ -1,0 +1,16 @@
+/* *{
+    color: blue ;
+    margin: 5px;
+} */
+ .textoPrincipal{
+    color: #fff;
+ }
+.fundo{
+    background-color: #2B2B2B;
+}
+.textosecundario{
+    color: class="textoSecundario";
+}
+.textoLink{
+    color:#FFD700 ;
+}

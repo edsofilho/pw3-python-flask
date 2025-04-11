@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadsatro de Games</title>
+</head>
+<body>
+    <h2>Cadsatro de Games</h2>
+    <hr>
+    <form action="{{url_for('cadGames')}}method">
+        <label for="">Titulo:</label>
+        <input type="text" name="titulo" required>
+        <label for="">Ano:</label>
+        <input type="text" name="ano" required>
+        <label for="">Categoria:</label>
+        <input type="text" name="categoria" required>
+        <input type="submit" value="Cadsatrar">
+    </form>
+    <br>
+    <hr>
+    <h4>Games cadastrados:</h4>
+    {% for game in gamelist %}
+    Titulo: <strong>{{game.Título}}</strong><br>
+    Ano: <strong>{{game.Ano}}</strong><br>
+    Categoria <strong>{{game.Categoria}}</strong><br>
+    <br><br>
+    {% endfor %}
+
+    <a href="/index.html">Voltar para a pagina inicial</a>
+    <br><br>
+    <a href="/games.html">Ir para a página de games</a>
+    
+</body>
+</html>

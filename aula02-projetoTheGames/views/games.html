@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Games</title>
+</head>
+<body>
+    <!-- comentario no html {#{variavel}#}-->
+    {# exemplo de comentraio no jinja2 #}
+    <h1>Bem vindo à página de games</h1>
+    <hr>
+    <p>Game mais jogado no momento:</p>
+    
+    {% for chave, valor in game.items() %}
+    <details>
+        <summary>{{chave}}</summary>
+        <p>{{valor}}</p>
+    </details>
+
+    {% endfor %}
+
+    <p>O jogo {{game['Título']}} tem {{2025-game['Ano']}} anos.</p>
+    <hr>
+    <p>Jogadores online no momento:</p>
+    <ol>
+        {% for jogador in jogadores%}
+        <li>{{jogador}}</li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <p>Outros jogos sendo jogados agora:</p>
+    <ol>
+        {% for jogo in jogos%}
+        <li>{{jogo}}</li>
+        {% endfor %}
+    </ol>
+
+    <hr>
+    <a href="/">Voltar para página inicial</a>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Games</title>
+  </head>
+  <body>
+    <h1>Bem vindo a página de games</h1>
+    <hr />
+    <p>Game mais jogado no momento</p>
+    <!-- comentário HTML {{variavel}} -->
+
+    {# Exemplo de comentario no jinja2 #}
+
+    <!-- Percorrendo o dicionário com for -->
+    {% for chave, valor in game.items() %}
+    <details>
+        <summary>{{chave}}</summary>
+        <p>{{valor}}</p>
+    </details>
+    {% endfor %}
+
+    <table>
+      <ul>
+        <!-- <li>{{titulo}}</li> -->
+        <!-- <li>{{ano}}</li> -->
+        <!-- <li>{{categoria}}</li> -->
+      </ul>
+    </table>
+    <p>O jogo {{game['Titulo']}} tem {{2025 - game['Ano']}} anos</p>
+    <hr />
+    <p>Estão jogando no momento:</p>
+    <ol>
+      {% for jogador in jogadores %}
+      <li>{{jogador}}</li>
+      {% endfor %}
+    </ol>
+    <hr />
+
+    <p>Jogos mais jogados no momento:</p>
+    <ol>
+      {% for jogo in jogos %}
+      <li>{{jogo}}</li>
+      {% endfor %}
+    </ol>
+
+    <hr>
+    <h4>Entrar no jogo:</h4>
+    <form action="{{url_for('games')}}">
+      <label for="jogador">Jogador:</label>
+      <input type="text" name="jogador">
+      <input type="submit" value="Entrar">
+    </form>
+    <hr>
+
+    <a href="/">Voltar para a página inicial</a>
+  </body>
+</html>

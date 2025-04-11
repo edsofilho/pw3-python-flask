@@ -5,6 +5,8 @@ from flask import Flask, render_template
 app = Flask(__name__, template_folder='views')
 
 # criando a rota principal do site
+
+
 @app.route('/')
 # Criando função no python
 # View function - Função de visualisação
@@ -14,17 +16,19 @@ def home():
 
 @app.route('/games')
 def games():
-    titulo = 'CS-GO'
-    ano = 2012
-    categoria = 'FPS Online'
-    jogadores = ['edsonGF', 'davi_lambari','iruah']
-    jogos = ['Minecraft','Fortnite','League of Legends', 'Croosfire', 'Free Fire', 'Roblox', 'Call of Duty']
+    # Dicionário no Python (objeto)
+    game = {'Titulo': 'CS-GO',
+            'Ano': 2012,
+            'Categoria': 'FPS Online'}
+
+    jogadores = ['edsonGF', 'davi_lambari', 'iruah']
+    jogos = ['Minecraft', 'Fortnite', 'League of Legends',
+             'Croosfire', 'Free Fire', 'Roblox', 'Call of Duty']
+
+
     return render_template('games.html',
-                           titulo = titulo,
-                           ano = ano,
-                           categoria = categoria,
-                           jogadores = jogadores,
-                           jogos = jogos)
+                       game=game,
+                       jogadores=jogadores)
 
 
 if __name__ == '__main__':
