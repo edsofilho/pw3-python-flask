@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from models.database import Game
+from models.database import Game, db
 
 # Lista de jogadores
 jogadores = ['Miguel José', 'Miguel Isack', 'Leaf',
@@ -47,10 +47,24 @@ def init_app(app):
         return render_template('cadgames.html',
                                gamelist=gamelist)
 
-    @app.route('/estoque')
-    def estoque():
-        # ORM que estamos usando é a SQLAlchemy
-        # O método query.all = select * from
+    @app.route('/estoque', methods=['GET', 'POST'])
+    @app.route('/estoque/<int:id>', methods=['GET', 'POST'])
+    def estoque(id=None):
+        # Se o id for passado, então é para excluir o jogo
+        if id:
+            game = Game.query.get(id)
+            # Deleta o jogo do banco
+            db.session.delete(game)
+            db.session.commit()
+            return redirect(url_for('estoque'))
+        if request.method == 'POST':
+            # ORM que estamos usando é a SQLAlchemy
+            # O método query.all = select * from
+            newgame = Game(request.form['titulo'], request.form['ano'],
+                        request.form['categoria'], request.form['plataforma'], request.form['preco'])
+            db.session.add(newgame)
+            db.session.commit()
+            return redirect(url_for('estique'))
         gamesEmEstoque = Game.query.all()
 
         return render_template('estoque.html', gamesEmEstoque=gamesEmEstoque)
