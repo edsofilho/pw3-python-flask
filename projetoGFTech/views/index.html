@@ -1,6 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Carrossel -->
+<div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{url_for('static', filename='images/imag1CarrRedi.png')}}" class="d-block w-100 imagCarr img-fluid">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='images/imag2CarrRedi.png')}}" class="d-block w-100 imagCarr img-fluid">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='images/imag3CarrRedi.png')}}" class="d-block w-100 imagCarr img-fluid">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<!-- Fim do Carrossel -->
 
-<h1>Index</h1>
+<h4 class="text-center mb-1 mt-5">O Que Você Encontra Aqui</h4>
+<ul class="list-group list-group-flush mx-auto text-center" style="max-width: 600px;">
+  <li class="list-group-item">Placas <br> <img src="{{url_for('static', filename='images/ardu.jfif')}}" class="w-50 img-fluid"> </li>
+  <li class="list-group-item">Sensores <br> <img src="{{url_for('static', filename='images/sens.jfif')}}" class="w-50 img-fluid"> </li>
+  <li class="list-group-item">Componentes <br> <img src="{{url_for('static', filename='images/jump.jpg')}}" class="w-50 img-fluid"></li>
+
+
+<h4 class="text-center mt-5">A melhor em Tecnologia</h4>
+<h5 class="text-center mt-1 mx-5">A GF Tech é referência em inovação e qualidade no fornecimento de componentes
+  eletrônicos. Nossa missão é facilitar o acesso à tecnologia com produtos confiáveis, suporte técnico especializado e
+  um atendimento que entende suas necessidades. Seja para projetos acadêmicos, profissionais ou hobby, estamos aqui para
+  impulsionar suas ideias.</h5>
+
+ 
 {% endblock content %}

@@ -1,5 +1,69 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1 class="text-center m-4">Estoque Geral</h1>
+<hr>
 
+<!-- Placas -->
+<h2 class="mt-5">Placas</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Valor (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for placa in placaslist %}
+    <tr>
+      <td>{{ placa.Nome }}</td>
+      <td>{{ placa.Codigo }}</td>
+      <td>{{ placa.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Componentes -->
+<h2 class="mt-5">Componentes Eletrônicos</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Preço (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for comp in componenteslist %}
+    <tr>
+      <td>{{ comp.Nome }}</td>
+      <td>{{ comp.Codigo }}</td>
+      <td>{{ comp.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Sensores -->
+<h2 class="mt-5">Sensores</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Preço (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sensor in sensoreslist %}
+    <tr>
+      <td>{{ sensor.Nome }}</td>
+      <td>{{ sensor.Codigo }}</td>
+      <td>{{ sensor.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock content %}

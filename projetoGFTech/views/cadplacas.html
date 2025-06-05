@@ -2,4 +2,39 @@
 
 {% block content %}
 
+<h1>Cadastrar Placas</h1>
+<form action="{{ url_for('cadplacas') }}" method="POST" class="m-2">
+    <label for="nome">Nome da placa:</label>
+    <input type="text" name="nome" class="form-control" required />
+
+    <label for="codigo">Código da placa:</label>
+    <input type="text" name="codigo" class="form-control" required />
+
+    <label for="valor">Preço:</label>
+    <input type="text" name="valor" class="form-control" required />
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary mt-3" />
+</form>
+
+<!-- Placas já cadastrados -->
+<h2 class="mt-5">Placas já cadastrados</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Preço (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for comp in placaslist %}
+    <tr>
+      <td>{{ comp.Nome }}</td>
+      <td>{{ comp.Codigo }}</td>
+      <td>{{ comp.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock content %}

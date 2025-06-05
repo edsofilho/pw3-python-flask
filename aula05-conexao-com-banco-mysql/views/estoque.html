@@ -5,41 +5,11 @@
   <summary>[ Cadastrar novo jogo ]</summary>
   <div class="col-md-4">
     <form action="{{url_for('estoque')}}" method="POST">
-      <input
-        type="text"
-        name="titulo"
-        placeholder="Título"
-        class="form-control"
-        required
-      />
-      <input
-        type="number"
-        name="ano"
-        placeholder="Ano"
-        class="form-control"
-        required
-      />
-      <input
-        type="text"
-        name="categoria"
-        placeholder="Categoria"
-        class="form-control"
-        required
-      />
-      <input
-        type="text"
-        name="plataforma"
-        placeholder="Plataforma"
-        class="form-control"
-        required
-      />
-      <input
-        type="text"
-        name="preco"
-        placeholder="Preço"
-        class="form-control"
-        required
-      />
+      <input type="text" name="titulo" placeholder="Título" class="form-control" required />
+      <input type="number" name="ano" placeholder="Ano" class="form-control" required />
+      <input type="text" name="categoria" placeholder="Categoria" class="form-control" required />
+      <input type="text" name="plataforma" placeholder="Plataforma" class="form-control" required />
+      <input type="text" name="preco" placeholder="Preço" class="form-control" required />
       <input type="submit" value="Cadastrar" class="btn btn-success" />
       <input type="reset" value="Limpar" class="btn btn-danger" />
     </form>
@@ -59,19 +29,37 @@
   <tbody>
     {% for game in gamesEmEstoque %}
     <tr>
-      <td>{{game.titulo}}</td>
-      <td>{{game.ano}}</td>
-      <td>{{game.categoria}}</td>
-      <td>{{game.plataforma}}</td>
-      <td>{{game.preco}}</td>
-      <td>
+      {% if id_editar == game.id %}
+      <form action="{{url_for('estoque')}}" method="POST">
+        <td><input type="text" name="titulo" value="{{game.titulo}}" class="form-control" required></td>
+        <td><input type="number" name="ano" value="{{game.ano}}" class="form-control" required></td>
+        <td><input type="text" name="categoria" value="{{game.categoria}}" class="form-control" required></td>
+        <td><input type="text" name="plataforma" value="{{game.plataforma}}" class="form-control" required></td>
+        <td><input type="text" name="preco" value="{{game.preco}}" class="form-control" required></td>
+        <td colspan="2">
+          <input type="hidden" name="id" value="{{game.id}}">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <a href="{{url_for('estoque')}}" class="btn btn-secondary">Cancelar</a>
+        </td>
+      </form>
+    </tr>
+    {% else %}
+    <td>{{game.titulo}}</td>
+    <td>{{game.ano}}</td>
+    <td>{{game.categoria}}</td>
+    <td>{{game.plataforma}}</td>
+    <td>{{game.preco}}</td>
+    <td>
+      <a href="{{url_for('estoque', edit_id=game.id) }}">
         <button class="btn btn-warning">Editar</button>
-      </td>
-      <td>
-        <a href="{{url_for('estoque', id=game.id) }}" onclick="return confirm('Deseja realmente excluir o jogo {{game.titulo}}?')">
-          <button class="btn btn-danger">Excluir</button></a
-        >
-      </td>
+      </a>
+    </td>
+    <td>
+      <a href="{{url_for('estoque', id=game.id) }}"
+        onclick="return confirm('Deseja realmente excluir o jogo {{game.titulo}}?')">
+        <button class="btn btn-danger">Excluir</button></a>
+    </td>
+    {% endif %}
     </tr>
     {% endfor %}
   </tbody>

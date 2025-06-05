@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Form cadensores -->
+<h1>Cadastrar Sensores</h1>
+<form action="{{ url_for('cadsensores') }}" method="POST" class="m-2">
+    <label for="nome">Nome do Sensor:</label>
+    <input type="text" name="nome" class="form-control" required />
 
-{% endblock content %}
+    <label for="codigo">Código do Sensor:</label>
+    <input type="text" name="codigo" class="form-control" required />
+
+    <label for="valor">Preço:</label>
+    <input type="text" name="valor" class="form-control" required />
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary mt-3" />
+</form>
+
+<!-- Sensores já cadastrados -->
+<h2 class="mt-5">Sensores já cadastrados</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Preço (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sens in sensoreslist %}
+    <tr>
+      <td>{{ sens.Nome }}</td>
+      <td>{{ sens.Codigo }}</td>
+      <td>{{ sens.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

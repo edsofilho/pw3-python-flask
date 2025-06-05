@@ -1,10 +1,11 @@
 # Comentário em Python
 # Importando o pacote do Flask
-from flask import Flask
+from flask import Flask, render_template, request
 from controllers import routes
 
 #Carregamoento da variável app
 app = Flask(__name__, template_folder='views')
+
 
 #Enviando o Flask (app) para a função init_app do routes
 routes.init_app(app)

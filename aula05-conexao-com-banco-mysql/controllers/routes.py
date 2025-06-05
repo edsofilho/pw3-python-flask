@@ -50,21 +50,38 @@ def init_app(app):
     @app.route('/estoque', methods=['GET', 'POST'])
     @app.route('/estoque/<int:id>', methods=['GET', 'POST'])
     def estoque(id=None):
-        # Se o id for passado, então é para excluir o jogo
-        if id:
+        # Se o id for passado na rota, então é para excluir
+        if request.method == 'GET' and id:
             game = Game.query.get(id)
-            # Deleta o jogo do banco
-            db.session.delete(game)
-            db.session.commit()
+            if game:
+                db.session.delete(game)
+                db.session.commit()
             return redirect(url_for('estoque'))
+
+        # Se for edição (o campo oculto "id" vem preenchido)
+        if request.method == 'POST' and request.form.get('id'):
+            game = Game.query.get(int(request.form['id']))
+            if game:
+                game.titulo = request.form['titulo']
+                game.ano = request.form['ano']
+                game.categoria = request.form['categoria']
+                game.plataforma = request.form['plataforma']
+                game.preco = request.form['preco']
+                db.session.commit()
+            return redirect(url_for('estoque'))
+
+        # Se for cadastro (sem campo "id")
         if request.method == 'POST':
-            # ORM que estamos usando é a SQLAlchemy
-            # O método query.all = select * from
             newgame = Game(request.form['titulo'], request.form['ano'],
                         request.form['categoria'], request.form['plataforma'], request.form['preco'])
             db.session.add(newgame)
             db.session.commit()
-            return redirect(url_for('estique'))
-        gamesEmEstoque = Game.query.all()
+            return redirect(url_for('estoque'))
 
-        return render_template('estoque.html', gamesEmEstoque=gamesEmEstoque)
+        # Exibe os jogos na tabela
+        gamesEmEstoque = Game.query.all()
+        id_editar = request.args.get('edit_id', None)
+        if id_editar:
+            id_editar = int(id_editar)
+        return render_template('estoque.html', gamesEmEstoque=gamesEmEstoque, id_editar=id_editar)
+    

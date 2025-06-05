@@ -1,5 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Form cadcomponentes -->
+<h1>Cadastrar Componentes</h1>
+<form action="{{ url_for('cadcomponentes') }}" method="POST" class="m-2">
+    <label for="nome">Nome do Componente:</label>
+    <input type="text" name="nome" class="form-control" required />
 
-{% endblock content %}
+    <label for="codigo">Código do Componente:</label>
+    <input type="text" name="codigo" class="form-control" required />
+
+    <label for="valor">Preço:</label>
+    <input type="text" name="valor" class="form-control" required />
+
+    <input type="submit" value="Cadastrar" class="btn btn-primary mt-3" />
+</form>
+
+
+<!-- Componentes já cadastrados -->
+<h2 class="mt-5">Componentes já cadastrados</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Código</th>
+      <th>Preço (R$)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for comp in componenteslist %}
+    <tr>
+      <td>{{ comp.Nome }}</td>
+      <td>{{ comp.Codigo }}</td>
+      <td>{{ comp.Valor }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
