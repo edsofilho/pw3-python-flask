@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block title %}Detalhes do Personagem • Rick and Morty{% endblock %}
+
+{% block content %}
+	{% if error %}
+		<div class="alert">{{ error }}</div>
+	{% endif %}
+
+	{% if character %}
+		<article class="detail">
+			<img class="detail-image" src="{{ character.image }}" alt="{{ character.name }}" />
+			<div class="detail-info">
+				<h1>{{ character.name }}</h1>
+				<ul>
+					<li><strong>Status:</strong> {{ character.status }}</li>
+					<li><strong>Espécie:</strong> {{ character.species }}</li>
+					<li><strong>Gênero:</strong> {{ character.gender }}</li>
+					<li><strong>Origem:</strong> {{ character.origin.name }}</li>
+					<li><strong>Localização:</strong> {{ character.location.name }}</li>
+				</ul>
+
+				<a class="button" href="{{ url_for('main.characters') }}">Voltar</a>
+			</div>
+		</article>
+	{% endif %}
+{% endblock %}
+
+

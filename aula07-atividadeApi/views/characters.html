@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Personagens • Rick and Morty{% endblock %}
+
+{% block content %}
+	<h1>Personagens</h1>
+
+	<form method="get" class="search-form">
+		<input type="text" name="name" value="{{ name }}" placeholder="Buscar por nome" />
+		<button type="submit" class="button">Buscar</button>
+	</form>
+
+	{% if error %}
+		<div class="alert">{{ error }}</div>
+	{% endif %}
+
+	<div class="grid">
+		{% for c in characters %}
+			<a class="card" href="{{ url_for('main.character_detail', character_id=c.id) }}">
+				<img src="{{ c.image }}" alt="{{ c.name }}" />
+				<div class="card-body">
+					<h3>{{ c.name }}</h3>
+					<p>Status: {{ c.status }} • Espécie: {{ c.species }}</p>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+
+	<div class="pagination">
+		{% if prev_page %}
+			<a class="button" href="{{ url_for('main.characters', page=prev_page, name=name) }}">« Anterior</a>
+		{% endif %}
+		<span>Página {{ page }}</span>
+		{% if next_page %}
+			<a class="button" href="{{ url_for('main.characters', page=next_page, name=name) }}">Próxima »</a>
+		{% endif %}
+	</div>
+{% endblock %}
+
+
